@@ -6,18 +6,22 @@ const bandSchema = new Schema(
       type: String,
       required: 'Your band must have a name!',
       minlength: 1,
-      maxlength: 75
+      maxlength: 280
+    },
+    username: {
+        type: String,
+        required: true
     },
     genre: {
       type: String
     },
     manager: {
       type: String,
-      required: true
+      required: false // maybe should be true
     },
     managerEmail: {
         type: String,
-        required: true,
+        required: false, // maybe should be true
         match: [/.+@.+\..+/, 'Must match an email address!']
     },
     currentInstruments: [
