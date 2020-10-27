@@ -27,7 +27,13 @@ const typeDefs = gql`
         bands: [Band]
     }
 
+    type Auth {
+        token: ID!
+        user: User
+    }
+
     type Query {
+        me: User
         users: [User]
         user(username: String!): User
         bands(username: String): [Band]
@@ -35,8 +41,9 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        login(email: String!, password: String!): User
-        addUser(username: String!, email: String!, password: String!): User
+        login(email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
+        addBand(bandName: String!, genre: String, manager: String, managerEmail: String, currentInstruments: [String], neededInstruments: [String], video: String, picture: String): Band
     }
 
 
