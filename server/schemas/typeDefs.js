@@ -16,8 +16,22 @@ const typeDefs = gql`
         picture: String
     }
 
-    type Query {
+    type User {
+        _id: ID
+        username: String
+        firstName: String
+        lastName: String
+        email: String
+        bio: String
+        instruments: [String]
         bands: [Band]
+    }
+
+    type Query {
+        users: [User]
+        user(username: String!): User
+        bands(username: String): [Band]
+        band(_id: ID!): Band
     }
 
 
