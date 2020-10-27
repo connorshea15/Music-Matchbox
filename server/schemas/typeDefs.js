@@ -34,6 +34,11 @@ const typeDefs = gql`
         band(_id: ID!): Band
     }
 
+    type Mutation {
+        login(email: String!, password: String!): User
+        addUser(username: String!, email: String!, password: String!): User
+    }
+
 
 
 `;
