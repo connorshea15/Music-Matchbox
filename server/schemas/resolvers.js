@@ -1,4 +1,5 @@
 const { User, Band } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
     Query: {
@@ -31,9 +32,20 @@ const resolvers = {
             return user;
         },
 
-        login: async () => {
+        login: async (parent, {email, password }) => {
+            const user = await User.findOne({ email });
 
+            if (!user) {
+                throw new AuthenticationError('No user with those credentials!');
+            }
 
+            const correctPw = await user.isCorrectPassword(password);
+
+            if (!correctPw) {
+                throw new AuthenticationError('No user with those credentials!');
+            }
+
+            return user;
         }
     }
   };
