@@ -16,6 +16,9 @@ const SingleBand = props => {
         return <div>Loading...</div>
     }
 
+    // here I need to link the username to the profile of that user
+    // I need to set up the manager email to open up the users default email to send a message
+
   return (
     <div>
         <h3>
