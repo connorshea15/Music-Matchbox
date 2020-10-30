@@ -5,6 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import BandForm from './components/BandForm';
 import Home from './pages/Home';
+import Login from './pages/Login';
 
 const client = new ApolloClient({
   uri: 'http://localhost:3002/graphql'
@@ -15,6 +16,7 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <Header />
+        <Login />
         <header>
         </header>
         <Home />
