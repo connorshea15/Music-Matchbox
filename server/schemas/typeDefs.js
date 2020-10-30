@@ -36,7 +36,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        bands(username: String): [Band]
+        bands(bandName: String): [Band]
         band(_id: ID!): Band
     }
 

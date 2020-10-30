@@ -17,8 +17,8 @@ const resolvers = {
             throw new AuthenticationError('You are not logged in');
         },
 
-        bands: async (parent, { username }) => {
-            const params = username ? { username } : {};
+        bands: async (parent, { bandName }) => {
+            const params = bandName ? { bandName } : {};
             return Band.find(params);
         },
 

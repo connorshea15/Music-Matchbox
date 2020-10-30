@@ -29,7 +29,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route exact path="/profile" component={Profile} />
-              <Route exact path="/band" component={SingleBand} />
+              <Route exact path="/band/:bandName" component={SingleBand} />
               <Route component={PageNotFound} />
             </Switch>
           </div>

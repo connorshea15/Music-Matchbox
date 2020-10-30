@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USERS } from '../utils/queries'; 
 import MusicianList from '../components/MusicianList';
@@ -25,4 +25,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home; */

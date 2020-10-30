@@ -1,5 +1,7 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
+
 
 const BandList = ({ bands }) => {
   if (!bands.length) {
@@ -14,7 +16,9 @@ const BandList = ({ bands }) => {
             <Card key={band._id}>
                 <Card.Img variant="top" src={band.picture} />
                 <Card.Body>
-                    <Card.Title>{band.bandName}</Card.Title>
+                    <Link to={`/band/${band.bandName}`}>
+                        <Card.Title>{band.bandName}</Card.Title>
+                    </Link>
                     <Card.Text>
                         Genre: {band.genre}
                         Current Instruments: {band.currentInstruments}
