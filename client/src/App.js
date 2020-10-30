@@ -6,6 +6,7 @@ import Header from './components/Header';
 import BandForm from './components/BandForm';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 const client = new ApolloClient({
   uri: '/graphql'
@@ -16,7 +17,7 @@ function App() {
     <ApolloProvider client={client}>
       <div>
         <Header />
-        <Login />
+        <Signup />
         <header>
         </header>
         <Home />
