@@ -8,7 +8,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3002/graphql'
+  uri: '/graphql'
 });
 
 function App() {
