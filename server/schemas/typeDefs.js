@@ -42,7 +42,7 @@ const typeDefs = gql`
 
     type Mutation {
         login(email: String!, password: String!): Auth
-        addUser(username: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!, bio: String, instruments: [String!]!, bands: [String]): Auth
         addBand(bandName: String!, genre: String, manager: String, managerEmail: String, currentInstruments: [String], neededInstruments: [String], video: String, picture: String): Band
     }
 
