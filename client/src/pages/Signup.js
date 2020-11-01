@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
@@ -8,24 +8,18 @@ const Signup = () => {
     const availableInstruments = ['vocals', 'guitar', 'drums', 'bass', 'keyboard', 'saxophone', 'percussion'];
 
     // This array will be updated as checkboxes are manipulated and all elements will be pushed to formState on submit
-    const instrumentsArr = [];
+    var instrumentsArr = [];
 
     // update state based on form input changes
     const handleChange = (event) => {
       const { name, value } = event.target;
 
       // if instruments is updated, it needs to be concatenated to instruments array
-      //if (name !== "instruments") {
         setFormState({
             ...formState,
             [name]: value,
           });
-      /*} else {
-        setFormState({
-            ...formState,
-            [name]: formState.instruments.concat(value),
-        }); 
-      } */
+
   
       console.log(formState);
     };
@@ -33,40 +27,36 @@ const Signup = () => {
     const handleInstrumentChange = (event) => {
         const { name, value } = event.target;
         console.log("name:   " + name + "   value: " + value);
+        var removed = false;
 
-        for (var i = 0; i < instrumentsArr.length; i++) {
-            if (instrumentsArr[i] === value) {
-                instrumentsArr.splice(i, 1);
-                /*setFormState({
-                    ...formState,
-                    [name]: formState.instruments.splice(i, 1),
-                }); */
-                
-                return;
+        const updatedArr = formState.instruments.filter(x => {
+            if (x === value) {
+                removed = true;
             }
+            return x !== value;
+        }); 
+
+        if (removed) {
+            setFormState({
+                ...formState,
+                [name]: updatedArr,
+            }); 
+        } else {
+            setFormState({
+                ...formState,
+                [name]: formState.instruments.concat(value),
+            }); 
         }
-        instrumentsArr.push(value);
-        /*setFormState({
-            ...formState,
-            [name]: formState.instruments.concat(instrumentsArr[instrumentsArr.length - 1]),
-        }); */
-        console.log("formState:  " + formState);
-        console.log("instrumentsArr:   " + instrumentsArr);
     };
   
+    useEffect(() => {
+        console.log(formState.instruments);
+    }, [formState]);
+
     // submit form
     const handleFormSubmit = async (event) => {
       event.preventDefault();
 
-      console.log(formState);
-
-      for (var i = 0; i < instrumentsArr.length; i++) {
-        setFormState({
-            ...formState,
-            instruments: formState.instruments.concat(instrumentsArr[i])
-        });
-      };
-      console.log(formState); 
     };
   
     return (
