@@ -36,3 +36,23 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_ME = gql`
+  {
+    me {
+      _id
+      username
+      email
+      bio
+      instruments
+      bands {
+        _id
+        bandName
+        genre
+        manager
+        currentInstruments
+        neededInstruments
+      }
+    }
+  }
+`;
