@@ -5,6 +5,7 @@ const typeDefs = gql`
 
     type Band {
         _id: ID
+        createdAt: String
         bandName: String
         username: String
         genre: String

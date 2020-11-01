@@ -16,14 +16,10 @@ const Signup = () => {
     const handleChange = (event) => {
       const { name, value } = event.target;
 
-      // if instruments is updated, it needs to be concatenated to instruments array
         setFormState({
             ...formState,
             [name]: value,
           });
-
-  
-      console.log(formState);
     };
 
     const handleInstrumentChange = (event) => {

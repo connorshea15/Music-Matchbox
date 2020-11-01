@@ -19,7 +19,7 @@ const resolvers = {
 
         bands: async (parent, { bandName }) => {
             const params = bandName ? { bandName } : {};
-            return Band.find(params);
+            return Band.find(params).sort({ createdAt: -1 });
         },
 
         band: async (parent, { _id }) => {

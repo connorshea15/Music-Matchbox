@@ -23,3 +23,20 @@ export const ADD_USER = gql`
     }
   }
 `;
+
+export const ADD_BAND = gql`
+    mutation addBand($bandName: String!, $genre: String, $manager: String, $managerEmail: String, $currentInstruments: [String], $neededInstruments: [String], $video: String, $picture: String) {
+        addBand(bandName: $bandName, genre: $genre, manager: $manager, managerEmail: $managerEmail, currentInstruments: $currentInstruments, neededInstruments: $neededInstruments, video: $video, picture: $picture) {
+            _id
+            bandName
+            username
+            genre
+            manager
+            managerEmail
+            currentInstruments
+            neededInstruments
+            video
+            picture
+        }
+    }
+`;

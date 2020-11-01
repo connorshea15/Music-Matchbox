@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { Redirect, useParams } from 'react-router-dom';
+import { Redirect, useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
+import BandForm from '../components/BandForm';
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -49,11 +50,14 @@ const Profile = () => {
         <ul>
             {user.bands &&
                 user.bands.map(band => (
-                    <li>
-                        {band.bandName}
-                    </li>
+                    <Link to={`/band/${band.bandName}`}>
+                        <li>
+                            {band.bandName}
+                        </li>
+                    </Link>
             ))}
         </ul>
+        <BandForm />
     </div>
   );
 };
