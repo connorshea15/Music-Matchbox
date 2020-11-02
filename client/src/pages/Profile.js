@@ -37,7 +37,7 @@ const Profile = () => {
         </h3>
         <h4>Bio</h4>
         <p>{user.bio}</p>
-        <h4>{user.firstName} plays...</h4>
+        <h4>{user.username} plays...</h4>
         <ul>
             {user.instruments && 
                 user.instruments.map(instrument => (
@@ -57,7 +57,10 @@ const Profile = () => {
                     </Link>
             ))}
         </ul>
-        <BandForm />
+        {Auth.loggedIn() &&
+            <BandForm />
+        }
+        
     </div>
   );
 };

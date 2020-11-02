@@ -37,6 +37,20 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+    query {
+        users {
+            username
+            email
+            instruments
+            bands {
+                _id
+                bandName
+            }
+        }
+    }
+`;
+
 export const QUERY_ME = gql`
   {
     me {

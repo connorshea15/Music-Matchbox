@@ -1,15 +1,24 @@
-/*import React from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USERS } from '../utils/queries'; 
 import MusicianList from '../components/MusicianList';
+import Auth from '../utils/auth';
 
 
-const Home = () => {
+const Musicians = () => {
     const { loading, data } = useQuery(QUERY_USERS);
 
     // if data exists, store it in bands
-    const bands = data?.users || [];
-    console.log(bands);
+    const users = data?.users || [];
+
+    if (!Auth.loggedIn()) {
+        return (
+          <h4>
+            You cannot see this page unless you are logged in! Use navigation above to get in the game!
+          </h4>
+        );
+      }
+
   return (
     <main>
       <div>
@@ -17,7 +26,7 @@ const Home = () => {
             {loading ? (
                 <div>Loading...</div>
             ) : (
-                <BandList users={users} />
+                <MusicianList users={users} />
             )}
         </div>
       </div>
@@ -25,4 +34,4 @@ const Home = () => {
   );
 };
 
-export default Home; */
+export default Musicians;

@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { QUERY_BANDS } from '../utils/queries'; 
+import Auth from '../utils/auth';
 
 const SingleBand = props => {
     const { bandName: bandName } = useParams();
@@ -31,7 +32,9 @@ const SingleBand = props => {
         </p>
         <p>Genre: {band[0].genre}</p>
         <p>Manager: {band[0].manager}</p>
-        <p>Reach the manager at {band[0].managerEmail}</p>
+        {Auth.loggedIn() &&
+            <p>Reach the manager at {band[0].managerEmail}</p>
+        }
     </div>
   );
 };

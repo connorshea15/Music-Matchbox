@@ -1,8 +1,8 @@
-/*import React from 'react';
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 
 const MusicianList = ({ users }) => {
-  if (!bands.length) {
+  if (!users.length) {
     return <h3>There are no musicians to see yet!</h3>;
   }
 
@@ -13,14 +13,20 @@ const MusicianList = ({ users }) => {
         users.map(user => (
             <Card key={user._id}>
                 <Card.Body>
-                    <Card.Title>{user.firstName} {user.lastName}</Card.Title>
+                    <Card.Title>{user.username}</Card.Title>
                     <Card.Text>
-                        Genre: {band.genre}
-                        Instruments: {user.instruments}
+                        Musician Contact: {user.email}
                     </Card.Text>
                 </Card.Body>
                 <Card.Footer>
-                    <small className="text-muted">Needed Instruments: {band.neededInstruments}</small>
+                <small className="text-muted">Instruments: {user.instruments}</small>
+                    <ul>
+                        {user.instruments && 
+                            user.instruments.map(instrument => {
+                                <li>{instrument}</li>
+                            })
+                        }
+                    </ul>
                 </Card.Footer>
             </Card>
         ))}
@@ -28,4 +34,4 @@ const MusicianList = ({ users }) => {
   );
 };
 
-export default MusicianList; */
+export default MusicianList;

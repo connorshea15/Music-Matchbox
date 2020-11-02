@@ -27,7 +27,7 @@ const resolvers = {
         },
 
         users: async () => {
-            return User.find()
+            return User.find().sort({ createdAt: -1 })
                 .select('-__v -password')
                 .populate('bands');
         },
