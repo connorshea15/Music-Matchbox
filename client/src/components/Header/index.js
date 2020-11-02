@@ -9,26 +9,27 @@ const Header = () => {
     };
 
     return (
-        <header>
-            <div>
+        <header className="sticky-top">
+            <div className="d-flex flex-row align-items-center flex-wrap justify-content-sm-center justify-content-lg-between">
                 <Link to="/">
-                    <h1>Music Matchbox</h1>
+                    <h1 className="mr-auto p-2">Music Matchbox</h1>
                 </Link>
-
-                {Auth.loggedIn() ? (
-                    <>
-                        <Link to="/profile">My Profile</Link>
-                        <Link to="/musicians">Find Musicians</Link>
-                        <a href="/" onClick={logout}>
-                            Logout
-                        </a>
-                    </>
-                ) : (
-                    <>
-                        <Link to="/login">Login</Link>
-                        <Link to="/signup">Signup</Link>
-                    </>
-                )}        
+                <div>
+                    {Auth.loggedIn() ? (
+                        <>
+                            <Link className="p-2" to="/profile">My Profile</Link>
+                            <Link className="p-2" to="/musicians">Find Musicians</Link>
+                            <a className="p-2" href="/" onClick={logout}>
+                                Logout
+                            </a>
+                        </>
+                    ) : (
+                        <>
+                            <Link className="p-2" to="/login">Login</Link>
+                            <Link className="p-2" to="/signup">Signup</Link>
+                        </>
+                    )}        
+                </div>
             </div>
         </header>
     );
