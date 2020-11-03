@@ -67,8 +67,8 @@ const Signup = () => {
     };
   
     return (
-        <div>
-            <Form onSubmit={handleFormSubmit}>
+        <div className="mx-auto">
+            <Form className="border rounded p-2" onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="username" name="username" placeholder="Create Username" value={formState.username} onChange={handleChange} />
@@ -88,22 +88,23 @@ const Signup = () => {
                     <Form.Label>Bio</Form.Label>
                     <Form.Control as="textarea" type="bio" name="bio" placeholder="Bio" value={formState.bio} onChange={handleChange} />
                 </Form.Group>
-
-                <Form.Group controlId="formBasicInstruments">
-                    <Form.Label>Instruments (Select all that apply)</Form.Label>
-                    {availableInstruments &&
-                        availableInstruments.map((instrument => (
-                            <Form.Check
-                                key={instrument}
-                                type="checkbox"
-                                label={instrument}
-                                id={instrument}
-                                name="instruments"
-                                value={instrument}
-                                onChange={handleInstrumentChange}
-                            />
-                    )))}
-                </Form.Group>
+                <div className="d-flex justify-content-center flex-wrap">
+                    <Form.Group className="mx-auto border rounded p-4" controlId="formBasicInstruments">
+                        <Form.Label>Instruments (Select all that apply)</Form.Label>
+                        {availableInstruments &&
+                            availableInstruments.map((instrument => (
+                                <Form.Check
+                                    key={instrument}
+                                    type="checkbox"
+                                    label={instrument}
+                                    id={instrument}
+                                    name="instruments"
+                                    value={instrument}
+                                    onChange={handleInstrumentChange}
+                                />
+                        )))}
+                    </Form.Group>
+                </div>
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>

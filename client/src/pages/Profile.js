@@ -31,36 +31,55 @@ const Profile = () => {
       }
 
   return (
-    <div>
-        <h3>
-            {userParam ? `Get to know ${user.username}` : 'Your Profile'}
-        </h3>
-        <h4>Bio</h4>
-        <p>{user.bio}</p>
-        <h4>{user.username} plays...</h4>
-        <ul>
-            {user.instruments && 
-                user.instruments.map(instrument => (
-                    <li>
-                        {instrument}
-                    </li>
-            ))}
-        </ul>
-        <h4>They play in...</h4>
-        <ul>
-            {user.bands &&
-                user.bands.map(band => (
-                    <Link to={`/band/${band.bandName}`}>
-                        <li>
-                            {band.bandName}
-                        </li>
-                    </Link>
-            ))}
-        </ul>
+      <div>
+        <div className="text-center">
+            <h3>
+                {userParam ? `Get to know ${user.username}` : 'Your Profile'}
+            </h3>
+            <div className="border my-3 mx-5 p-2">
+                <h4>Bio</h4>
+                <p>{user.bio}</p>
+            </div>
+            {Auth.loggedIn() && userParam &&
+                <div>
+                    <h4>Reach {user.username} at</h4>
+                    <p>
+                        <a className="mx-1" href={`mailto:${user.email}`}>
+                            {user.email}
+                        </a>
+                    </p>
+                </div>
+            }
+        </div>
+        <div className="d-flex flex-row justify-content-center my-3">
+            <div className="mx-5">
+                <h4>{user.username} plays...</h4>
+                <ul>
+                    {user.instruments && 
+                        user.instruments.map(instrument => (
+                            <li>
+                                {instrument}
+                            </li>
+                    ))}
+                </ul>
+            </div>
+            <div className="mx-5">
+                <h4>They play in...</h4>
+                <ul>
+                    {user.bands &&
+                        user.bands.map(band => (
+                            <Link to={`/band/${band.bandName}`}>
+                                <li>
+                                    {band.bandName}
+                                </li>
+                            </Link>
+                    ))}
+                </ul>
+            </div>
+        </div>
         {Auth.loggedIn() &&
             <BandForm />
         }
-        
     </div>
   );
 };

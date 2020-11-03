@@ -15,12 +15,11 @@ const BandList = ({ bands }) => {
         {bands &&
             bands.map(band => (
                 <Card className="m-4" key={band._id}>
-                    <Card.Img variant="top" src={band.picture} />
                     <Card.Body>
                         <Link to={`/band/${band.bandName}`}>
                             <Card.Title className="text-center">{band.bandName}</Card.Title>
                         </Link>
-                        <Card.Text>
+                        <Card.Text className="text-center">
                             Genre: {band.genre}
                         </Card.Text>
                     </Card.Body>
