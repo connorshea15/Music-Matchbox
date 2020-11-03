@@ -9,7 +9,7 @@ const Header = () => {
     };
 
     return (
-        <header className="sticky-top">
+        <header className="sticky-top bg-dark mb-2">
             <div className="d-flex flex-row align-items-center flex-wrap justify-content-sm-center justify-content-lg-between">
                 <Link to="/">
                     <h1 className="mr-auto p-2">Music Matchbox</h1>

@@ -99,9 +99,11 @@ const BandForm = () => {
 
     return (
         <>
-                <Button variant="primary" onClick={handleShow}>
+            <div className="text-center mb-2">
+                <Button variant="primary" className="text-center" onClick={handleShow}>
                     Add Your Own Band!
                 </Button>
+            </div>
 
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>

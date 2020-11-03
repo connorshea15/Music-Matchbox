@@ -25,12 +25,11 @@ const MusicianList = ({ users }) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
-                    <p>Instruments: {user.instruments}</p>
+                        <p>Instruments:</p>
                             {user.instruments && 
-                                user.instruments.map(instrument => {
+                                user.instruments.map(instrument => (
                                     <li>{instrument}</li>
-                                })
-                            }
+                            ))}
                     </Card.Footer>
                 </Card>
             ))}
