@@ -10,25 +10,41 @@ const BandList = ({ bands }) => {
 
   return (
     <div>
-      <h3>Sweet Bands</h3>
-      {bands &&
-        bands.map(band => (
-            <Card key={band._id}>
-                <Card.Img variant="top" src={band.picture} />
-                <Card.Body>
-                    <Link to={`/band/${band.bandName}`}>
-                        <Card.Title>{band.bandName}</Card.Title>
-                    </Link>
-                    <Card.Text>
-                        Genre: {band.genre}
-                        Current Instruments: {band.currentInstruments}
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    <small className="text-muted">Needed Instruments: {band.neededInstruments}</small>
-                </Card.Footer>
-            </Card>
-        ))}
+      <h3 className="text-center">Sweet Bands</h3>
+      <div className="d-flex flex-row flex-wrap justify-content-center">
+        {bands &&
+            bands.map(band => (
+                <Card className="m-4" key={band._id}>
+                    <Card.Img variant="top" src={band.picture} />
+                    <Card.Body>
+                        <Link to={`/band/${band.bandName}`}>
+                            <Card.Title className="text-center">{band.bandName}</Card.Title>
+                        </Link>
+                        <Card.Text>
+                            Genre: {band.genre}
+                        </Card.Text>
+                    </Card.Body>
+                    <Card.Footer>
+                        <div className="d-flex flex-row justify-content-center">
+                            <div className="mx-2">
+                                <p>Current Instruments:</p>
+                                {band.currentInstruments &&
+                                    band.currentInstruments.map(x => (
+                                        <li>{x}</li>
+                                ))}
+                            </div>
+                            <div className="mx-2">
+                                <p>Needed Instruments:</p>
+                                {band.neededInstruments &&
+                                    band.neededInstruments.map(x => (
+                                        <li>{x}</li>
+                                ))}
+                            </div>
+                        </div>
+                    </Card.Footer>
+                </Card>
+            ))}
+        </div>
     </div>
   );
 };
