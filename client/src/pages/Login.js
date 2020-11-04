@@ -42,7 +42,7 @@ const Login = (props) => {
     };
   
     return (
-        <div>
+        <div className="login-form mx-auto">
             <Form onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>

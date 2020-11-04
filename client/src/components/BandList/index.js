@@ -2,7 +2,6 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-
 const BandList = ({ bands }) => {
   if (!bands.length) {
     return <h3>There are no bands to see yet!</h3>;
@@ -10,7 +9,7 @@ const BandList = ({ bands }) => {
 
   return (
     <div>
-      <h3 className="text-center">Sweet Bands</h3>
+      <h3 className="text-center">Find Sweet Bands</h3>
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {bands &&
             bands.map(band => (

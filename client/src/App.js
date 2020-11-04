@@ -32,7 +32,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="px-2 py-2">
+        <div className="px-2 py-2 main-color">
           <Header />
           <div>
             <Switch>

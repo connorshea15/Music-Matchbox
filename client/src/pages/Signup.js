@@ -47,10 +47,6 @@ const Signup = () => {
             }); 
         }
     };
-  
-    useEffect(() => {
-        console.log(formState.instruments);
-    }, [formState]);
 
     // submit form
     const handleFormSubmit = async (event) => {
@@ -67,7 +63,7 @@ const Signup = () => {
     };
   
     return (
-        <div className="mx-auto">
+        <div className="mx-auto signup-form">
             <Form className="border rounded p-2" onSubmit={handleFormSubmit}>
                 <Form.Group controlId="formBasicUsername">
                     <Form.Label>Username</Form.Label>
