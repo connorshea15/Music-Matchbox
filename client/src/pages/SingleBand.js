@@ -22,12 +22,12 @@ const SingleBand = props => {
 
   return (
     <div className="text-center">
-        <div className="d-flex flex-row flex-wrap justify-content-center align-items-center">
-            <div className="mx-3">
-                <img className="img-fluid img-thumbnail w-75 h-75" src={band[0].picture}></img>
+        <div className="d-flex flex-row flex-wrap justify-content-center align-items-center mb-4">
+            <div className="mx-3 mb-3 w-50 h-50 band-pic">
+                <img className="img-fluid img-thumbnail" src={band[0].picture}></img>
             </div>
-            <div className="mx-3">
-                <h3 className="mt-4">
+            <div className="mx-3 bio rounded p-3">
+                <h3>
                     {band[0].bandName}
                 </h3>
                 <div>

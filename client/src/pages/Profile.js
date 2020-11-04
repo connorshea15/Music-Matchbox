@@ -36,7 +36,7 @@ const Profile = () => {
             <h3>
                 {userParam ? `Get to know ${user.username}` : 'Your Profile'}
             </h3>
-            <div className="border my-3 mx-5 p-2">
+            <div className="border rounded my-3 mx-5 p-2 bio">
                 <h4>Bio</h4>
                 <p>{user.bio}</p>
             </div>
@@ -51,8 +51,8 @@ const Profile = () => {
                 </div>
             }
         </div>
-        <div className="d-flex flex-row justify-content-center my-3">
-            <div className="mx-5">
+        <div className="d-flex flex-row flex-wrap justify-content-center my-3">
+            <div className="mx-5 bio rounded mb-3 p-2">
                 <h4>{user.username} plays...</h4>
                 <ul>
                     {user.instruments && 
@@ -63,7 +63,7 @@ const Profile = () => {
                     ))}
                 </ul>
             </div>
-            <div className="mx-5">
+            <div className="mx-5 bio rounded p-2">
                 <h4>They play in...</h4>
                 <ul>
                     {user.bands &&

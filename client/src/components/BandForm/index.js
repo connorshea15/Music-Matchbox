@@ -47,8 +47,6 @@ const BandForm = () => {
                 ...formState,
                 [name]: value,
             });
-      
-        console.log(formState);
     };
 
     const handleInstrumentChange = (event) => {
@@ -99,7 +97,7 @@ const BandForm = () => {
 
     return (
         <>
-            <div className="text-center mb-2">
+            <div className="text-center mb-3">
                 <Button variant="primary" className="text-center" onClick={handleShow}>
                     Add Your Own Band!
                 </Button>

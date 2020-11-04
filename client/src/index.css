@@ -1,3 +1,9 @@
+body > #root > div {
+  height: 100vh;
+  overflow: scroll;
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +11,43 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #cfe0e8;
+  height: 100%;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.main-color {
+  background-color: #87bdd8;
+  
+}
+
+div {
+  color: #667292;
+}
+
+header {
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px grey;
+  background-color: #cfe0e8;
+}
+
+.login-form {
+  width: 450px;
+}
+
+.signup-form {
+  max-width: 800px;
+}
+
+.bio {
+  background-color: #cfe0e8;
+  box-shadow: 5px 5px 5px grey;
+}
+
+.band-pic {
+  min-width: 400px;
 }

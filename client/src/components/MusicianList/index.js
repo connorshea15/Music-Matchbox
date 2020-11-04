@@ -9,7 +9,7 @@ const MusicianList = ({ users }) => {
 
   return (
     <div>
-      <h3 className="text-center">Sweet Musicians</h3>
+      <h3 className="text-center">Find Sweet Musicians</h3>
       <div className="d-flex flex-row flex-wrap justify-content-center">
         {users &&
             users.map(user => (
