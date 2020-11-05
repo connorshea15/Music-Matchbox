@@ -56,7 +56,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 ## Documentation 
 
 ### Heroku Live Application
-Live Deployed Application: [View Application]( "Live Deploy")  
+Live Deployed Application: [View Application](https://music-matchbox.herokuapp.com/ "Live Deploy")  
 
 ## Contributors
 Connor Shea | [GitHub](https://github.com/connorshea15 "Jakekelly44 Github")  | [Portfolio](https://connorshea15.github.io/Connor-Shea-Portfolio/ "Connor Shea Portfolio")      
