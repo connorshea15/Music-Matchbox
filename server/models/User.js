@@ -43,6 +43,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Band'
       }
+    ],
+    messages: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Message'
+      }
     ]
   },
   {

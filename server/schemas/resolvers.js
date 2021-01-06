@@ -1,6 +1,7 @@
 const { User, Band } = require('../models');
 const { signToken } = require('../utils/auth');
 const { AuthenticationError } = require('apollo-server-express');
+const Message = require('../models/Message');
 
 const resolvers = {
     Query: {
@@ -36,6 +37,15 @@ const resolvers = {
             return User.findOne({ username })
                 .select('-__v -password')
                 .populate('bands');
+        },
+
+        messages: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Message.find(params).sort({ createdAt: -1 });
+        },
+
+        message: async (parent, { _id }) => {
+            return Message.findOne({ _id });
         }
     },
 
@@ -75,6 +85,20 @@ const resolvers = {
                 );
 
                 return band;
+            }
+
+            throw new AuthenticationError('You must be logged in to add a band!');
+        },
+
+        addMessage: async (parent, args, context) => {
+            if (context.user) {
+                const message = await Message.create({ ...args, username: context.user.username });
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { messages: message._id } },
+                    { new: true }
+                );
             }
 
             throw new AuthenticationError('You must be logged in to add a band!');
