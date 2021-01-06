@@ -5,7 +5,6 @@ const messageSchema = new Schema(
     username: {
       type: String,
       required: true,
-      unique: true,
       trim: true
     },
     recipientUsername: {
@@ -20,13 +19,13 @@ const messageSchema = new Schema(
     createdAt: {
         type: Date,
         default: Date.now
-    },
+    }/*,
     users: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'Message'
+            ref: 'User'
         }
-    ]
+    ]*/
   }
 );
 

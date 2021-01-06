@@ -22,7 +22,6 @@ const typeDefs = gql`
         recipientUsername: String
         messageBody: String
         createdAt: String
-        responses: [Message]
     }
 
     type User {
@@ -49,7 +48,7 @@ const typeDefs = gql`
         user(username: String!): User
         bands(bandName: String): [Band]
         band(_id: ID!): Band
-        messages(username: String): [Message]
+        messages(username: String!, recipientUsername: String!): [Message]
         message(_id: ID!): Message
     }
 
