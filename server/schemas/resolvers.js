@@ -30,18 +30,25 @@ const resolvers = {
         users: async () => {
             return User.find().sort({ createdAt: -1 })
                 .select('-__v -password')
-                .populate('bands');
+                .populate('bands')
+                .populate('messages');
         },
 
         user: async (parent, { username }) => {
             return User.findOne({ username })
                 .select('-__v -password')
-                .populate('bands');
+                .populate('bands')
+                .populate('messages');
         },
 
-        messages: async (parent, { username, recipientUsername }) => {
-            const params = username && recipientUsername ? { username, recipientUsername } : {};
-            return Message.find(params).sort({ createdAt: -1 });
+        messages: async (parent, context, { recipientUsername }) => {
+            if (context.user) {
+                const params =  recipientUsername ? { recipientUsername } : {};
+                return Message.find(params).sort({ createdAt: -1 });
+                return User.find(
+                    {}
+                )
+            }
         },
 
     },
@@ -89,7 +96,7 @@ const resolvers = {
 
         addMessage: async (parent, args, context) => {
             if (context.user) {
-                const message = await Message.create({ ...args, username: context.user.username });
+                const message = await Message.create({ ...args });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
@@ -105,7 +112,7 @@ const resolvers = {
                 return message;
             }
 
-            throw new AuthenticationError('You must be logged in to add a band!');
+            throw new AuthenticationError('You must be logged in to send a message!');
         }
     }
   };
