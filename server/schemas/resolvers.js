@@ -41,8 +41,16 @@ const resolvers = {
                 .populate('messages');
         },
 
-        messages: async (parent, context, { recipientUsername }) => {
-            return Message.find();
+        threads: async (parent, args, context) => {
+            if (context.user) {
+                const userData = await User.findOne({ _id: context.user._id })
+                    .populate('messages');
+
+                return userData;
+            }
+
+            throw new AuthenticationError('You are not logged in');
+
             /*
             if (context.user) {
                 const params =  recipientUsername ? { recipientUsername } : {};
@@ -103,7 +111,7 @@ const resolvers = {
 
         addMessage: async (parent, args, context) => {
             if (context.user) {
-                const message = await Message.create({ ...args });
+                const message = await Message.create({ ...args, username: context.user.username });
 
                 await User.findByIdAndUpdate(
                     { _id: context.user._id },
