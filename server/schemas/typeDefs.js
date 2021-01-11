@@ -47,8 +47,8 @@ const typeDefs = gql`
         user(username: String!): User
         bands(bandName: String): [Band]
         band(_id: ID!): Band
-        messages(recipientUsername: String!): [Message]
-        message(_id: ID!): Message
+        messages: [Message]
+        message(recipientUsername: String!): Message
     }
 
     type Mutation {

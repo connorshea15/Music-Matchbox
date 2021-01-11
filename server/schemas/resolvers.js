@@ -42,13 +42,20 @@ const resolvers = {
         },
 
         messages: async (parent, context, { recipientUsername }) => {
+            return Message.find();
+            /*
             if (context.user) {
                 const params =  recipientUsername ? { recipientUsername } : {};
                 return Message.find(params).sort({ createdAt: -1 });
                 return User.find(
                     {}
                 )
-            }
+            } */
+        },
+
+        message: async (parent, context, { recipientUsername }) => {
+            return Message.findOne({ recipientUsername });
+
         },
 
     },
@@ -113,7 +120,29 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You must be logged in to send a message!');
-        }
+        }/*,
+        addMessage: async (parent, args, context) => {
+            if (context.user) {
+                const message = await Message.create({ ...args });
+
+                const thread = await Thread.findOne()
+
+                await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $push: { messages: message._id } },
+                    { new: true }
+                );
+                await User.findOneAndUpdate(
+                    { username: message.recipientUsername },
+                    { $push: { messages: message._id } },
+                    { new: true }
+                );
+
+                return message;
+            }
+
+            throw new AuthenticationError('You must be logged in to send a message!');
+        } */
     }
   };
   
