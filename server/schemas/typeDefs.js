@@ -57,6 +57,7 @@ const typeDefs = gql`
         bands(bandName: String): [Band]
         band(_id: ID!): Band
         threads: [Thread]
+        thread(username: String!): Thread
         message(recipientUsername: String!): Message
     }
 

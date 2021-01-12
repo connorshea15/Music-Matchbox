@@ -9,7 +9,10 @@ const resolvers = {
                 const userData = await User.findOne({ _id: context.user._id })
                 .select('-__v -password')
                 .populate('bands')
-                .populate('messages');
+                .populate({
+                    path: 'threads',
+                    populate: { path: 'messages' }
+                });
             
             return userData;
 
@@ -48,15 +51,14 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You are not logged in');
+        },
 
-            /*
+        thread: async (parent, { username }, context) => {
             if (context.user) {
-                const params =  recipientUsername ? { recipientUsername } : {};
-                return Message.find(params).sort({ createdAt: -1 });
-                return User.find(
-                    {}
-                )
-            } */
+                return Thread.findOne({$or:[{username1: context.user.username, username2: username}, {username1: username, username2: context.user.username}]}).populate('messages');
+            }
+
+            throw new AuthenticationError('You are not logged in');
         },
 
         message: async (parent, context, { recipientUsername }) => {
@@ -109,17 +111,21 @@ const resolvers = {
 
         addMessage: async (parent, args, context) => {
             if (context.user) {
+                // destructure args so I can access messageBody and recipientUsername
                 var {messageBody, recipientUsername} = args;
                 const message = await Message.create({ ...args, username: context.user.username });
 
+                // here I am testing to see if the thread already exists
                 var thread = await Thread.findOne({$or:[{username1: context.user.username, username2: recipientUsername}, {username1: recipientUsername, username2: context.user.username}]});
 
+                // if thread already exists, simply push the new message to it
                 if (thread) {
                     await Thread.findByIdAndUpdate(
                         { _id: thread._id },
                         { $push: { messages: message } },
                         { new: true }
                     )
+                // if thread does not exist create it and add it to each user
                 } else {
                     var thread = await Thread.create({username1: context.user.username, username2: recipientUsername, messages: message})
                     await User.findByIdAndUpdate(
