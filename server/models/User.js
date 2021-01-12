@@ -49,7 +49,13 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'Message'
       }
-    ]
+    ],
+    threads: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Thread'
+      }
+    ],
   },
   {
     toJSON: {

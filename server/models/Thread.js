@@ -2,14 +2,14 @@ const { Schema, model } = require('mongoose');
 
 const threadSchema = new Schema(
   {
-    senderUsername: {
-      type: String,
-      required: true,
-    },
-    recipientUsername: {
+    username1: {
         type: String,
         required: true
-    },
+      },
+      username2: {
+          type: String,
+          required: true
+      },
     messages: [
         {
             type: Schema.Types.ObjectId,
@@ -21,4 +21,4 @@ const threadSchema = new Schema(
 
 const Thread = model('Thread', threadSchema);
 
-module.exports = Message;
+module.exports = Thread;

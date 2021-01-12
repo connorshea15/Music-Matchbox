@@ -24,6 +24,13 @@ const typeDefs = gql`
         createdAt: String
     }
 
+    type Thread {
+        _id: ID
+        username1: String
+        username2: String
+        messages: [Message]
+    }
+
     type User {
         _id: ID
         createdAt: String
@@ -33,6 +40,7 @@ const typeDefs = gql`
         email: String
         bio: String
         messages: [Message]
+        threads: [Thread]
         instruments: [String]
         bands: [Band]
     }
@@ -48,7 +56,7 @@ const typeDefs = gql`
         user(username: String!): User
         bands(bandName: String): [Band]
         band(_id: ID!): Band
-        threads: User
+        threads: [Thread]
         message(recipientUsername: String!): Message
     }
 
