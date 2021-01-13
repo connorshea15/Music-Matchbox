@@ -46,7 +46,7 @@ const resolvers = {
 
         threads: async (parent, args, context) => {
             if (context.user) {
-                return Thread.find()
+                return Thread.find({$or:[{ username1: context.user.username }, { username2: context.user.username }]})
                     .populate('messages');
             }
 

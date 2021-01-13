@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import BandForm from '../components/BandForm';
+import MessageForm from '../components/MessageForm';
 
 const Profile = () => {
     const { username: userParam } = useParams();
@@ -42,12 +43,10 @@ const Profile = () => {
             </div>
             {Auth.loggedIn() && userParam &&
                 <div>
-                    <h4>Reach {user.username} at</h4>
-                    <p>
-                        <a className="mx-1" href={`mailto:${user.email}`}>
-                            {user.email}
-                        </a>
-                    </p>
+                    <h4>Reach {user.username}</h4>
+                    <MessageForm 
+                        recipientUsername={user.username}
+                    />
                 </div>
             }
         </div>

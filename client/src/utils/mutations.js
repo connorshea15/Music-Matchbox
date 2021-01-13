@@ -40,3 +40,13 @@ export const ADD_BAND = gql`
         }
     }
 `;
+
+export const ADD_MESSAGE = gql`
+  mutation addMessage($messageBody: String!, $recipientUsername: String!) {
+    addMessage(messageBody: $messageBody, recipientUsername: $recipientUsername) {
+      _id
+      messageBody
+    	recipientUsername
+    }
+  }
+`;
