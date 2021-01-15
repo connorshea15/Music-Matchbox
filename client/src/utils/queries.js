@@ -80,3 +80,16 @@ export const QUERY_THREADS = gql`
     }
   }
 `;
+
+export const QUERY_THREAD = gql`
+  query thread($username: String!) {
+    thread(username: $username) {
+      _id
+      username1
+      username1
+      messages {
+        messageBody
+      }
+    }
+  }
+`;

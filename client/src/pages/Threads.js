@@ -5,7 +5,6 @@ import ThreadList from '../components/ThreadList';
 import BandForm from '../components/BandForm';
 import Auth from '../utils/auth';
 
-
 const Messages = () => {
     const { loading, data } = useQuery(QUERY_THREADS);
 
