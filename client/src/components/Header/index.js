@@ -19,6 +19,7 @@ const Header = () => {
                         <>
                             <Link className="p-2" to="/profile">My Profile</Link>
                             <Link className="p-2" to="/musicians">Find Musicians</Link>
+                            <Link className="p-2" to="/messages">Messages</Link>
                             <a className="p-2" href="/" onClick={logout}>
                                 Logout
                             </a>

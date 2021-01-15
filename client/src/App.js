@@ -14,6 +14,7 @@ import Profile from './pages/Profile';
 import SingleBand from './pages/SingleBand';
 import PageNotFound from './pages/PageNotFound';
 import Musicians from './pages/Musicians';
+import Threads from './pages/Threads';
 
 const client = new ApolloClient({
   request: operation => {
@@ -42,6 +43,7 @@ function App() {
               <Route exact path="/profile/:username?" component={Profile} />
               <Route exact path="/band/:bandName" component={SingleBand} />
               <Route exact path="/musicians" component={Musicians} />
+              <Route exact path="/messages" component={Threads} />
               <Route component={PageNotFound} />
             </Switch>
           </div>

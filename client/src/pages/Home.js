@@ -5,7 +5,6 @@ import BandList from '../components/BandList';
 import BandForm from '../components/BandForm';
 import Auth from '../utils/auth';
 
-
 const Home = () => {
     const { loading, data } = useQuery(QUERY_BANDS);
 

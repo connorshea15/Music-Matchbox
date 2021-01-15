@@ -70,3 +70,13 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+export const QUERY_THREADS = gql`
+  {
+    threads {
+      _id
+      username1
+      username1
+    }
+  }
+`;
