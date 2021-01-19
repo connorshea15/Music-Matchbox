@@ -34,7 +34,8 @@ const Messages = () => {
                 <div>Loading...</div>
             ) : (
                 <ThreadList 
-                  contacts={contacts} 
+                  contacts={contacts}
+                  username={username} 
                 />
             )}
         </div>

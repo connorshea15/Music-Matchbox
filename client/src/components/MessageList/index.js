@@ -7,23 +7,31 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { QUERY_BANDS, QUERY_ME } from '../../utils/queries';
 
-const MessageList = ({ recipientUsername }) => {
+const MessageList = (props) => {
+
+    const {
+        recipientUsername,
+        username
+    } = props
+
     const { loading, data } = useQuery(QUERY_THREAD, {
         variables: { username: recipientUsername }
     });
 
     const thread = data?.thread || [];
 
-    for (var i = 0; i < thread.messages.length; i++) {
-        console.log("messages:    " + thread.messages[i].messageBody);
-    };
+    /*if (thread) {
+        for (var i = 0; i < thread.messages.length; i++) {
+            console.log("thread:    " + thread.messages[i]);
+        };
+    };*/
 
     const [formState, setFormState] = useState({ messageBody: '' });
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => setShow(true); // I may need to do this shit in here
 
     const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
         update(cache, { data: { addMessage } }) {
@@ -74,18 +82,29 @@ const MessageList = ({ recipientUsername }) => {
 
     return (
         <>
-            <div className="text-center mb-3">
-                <Button variant="primary" className="text-center" onClick={handleShow}>
-                    Message {recipientUsername}
-                </Button>
-            </div>
-
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                <>
+                <div className="text-center mb-3">
+                    <Button variant="primary" className="text-center" onClick={handleShow}>
+                        {recipientUsername}
+                    </Button>
+                </div>
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Send         a Message!</Modal.Title>
+                        <Modal.Title>Send {recipientUsername} a Message!</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <div className="mx-auto">
+                            <div  className="border rounded p-2">
+                                {thread &&
+                                    thread.messages.map(message => (
+                                        <div>
+                                            <p className={message.username = username ? 'text-right': 'text-left'}>{message.messageBody}</p>
+                                        </div>
+                                ))}
+                            </div>
                             <Form className="border rounded p-2" onSubmit={handleFormSubmit}>
                                 <Form.Group controlId="formBasicBandName">
                                     <Form.Label>Add Your Message Here</Form.Label>
@@ -104,6 +123,9 @@ const MessageList = ({ recipientUsername }) => {
                     </Button>
                     </Modal.Footer>
                 </Modal>
+                </>
+            )}
+
         </>
     )
 };

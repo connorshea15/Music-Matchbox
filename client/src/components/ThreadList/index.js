@@ -3,7 +3,12 @@ import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import MessageList from '../MessageList';
 
-const ThreadList = ({ contacts }) => {
+const ThreadList = (props) => {
+
+    const {
+        contacts,
+        username
+    } = props
 
   if (!contacts.length) {
     return <h3>You have no messages</h3>;
@@ -11,12 +16,17 @@ const ThreadList = ({ contacts }) => {
 
   return (
     <div>
-      <h3 className="text-center">Find Sweet Bands</h3>
+      <h3 className="text-center">Your Messages</h3>
       <div className="d-flex flex-row flex-wrap justify-content-center">
-            <p>{contacts[0]}   {contacts[1]}</p>
-            <MessageList
-                recipientUsername={contacts[0]}
-            />
+            {contacts &&
+                contacts.map(contact => (
+                    <div className="m-4">
+                        <MessageList
+                            recipientUsername={contact}
+                            username={username}
+                        />
+                    </div>
+            ))}
 
         </div>
     </div>
