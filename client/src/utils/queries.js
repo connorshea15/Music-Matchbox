@@ -89,6 +89,7 @@ export const QUERY_THREAD = gql`
       username1
       messages {
         messageBody
+        username
       }
     }
   }

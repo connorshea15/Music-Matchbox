@@ -20,11 +20,29 @@ const MessageList = (props) => {
 
     const thread = data?.thread || [];
 
-    /*if (thread) {
+    var messageList = [];
+
+    /*
+    Maybe I can use this useEffect to listen for changes to thread and call a function that has the message creator thing in it
+    useEffect(() => {
+
+    }, [thread]) */
+
+    /*if (!loading) {
         for (var i = 0; i < thread.messages.length; i++) {
-            console.log("thread:    " + thread.messages[i]);
+            if (thread.messages[i].recipientUsername !== username) {
+                var sender = true;
+                console.log("recipeintUsername:   " + thread.messages[i].username + thread.messages.length);
+            } else var sender = false;
+            var message = {
+                body: thread.messages[i].messageBody,
+                myMessage: sender,
+                id: i
+            };
+            messageList.push(message);
+            console.log(messageList[i].myMessage);
         };
-    };*/
+    }; */
 
     const [formState, setFormState] = useState({ messageBody: '' });
 
@@ -54,6 +72,15 @@ const MessageList = (props) => {
             }); */
         }
     });
+
+        // update style of message based on who sent it 
+        const styleMessages = (message) => {
+            console.log("I am in the style Messages function!:    " + message);
+            if (message === username) {
+                return 'text-right';
+            } else return 'text-left';
+        };
+    
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -101,7 +128,7 @@ const MessageList = (props) => {
                                 {thread &&
                                     thread.messages.map(message => (
                                         <div>
-                                            <p className={message.username = username ? 'text-right': 'text-left'}>{message.messageBody}</p>
+                                            <p className={styleMessages(message.username)}>{message.messageBody}</p>
                                         </div>
                                 ))}
                             </div>
