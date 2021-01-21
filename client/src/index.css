@@ -51,3 +51,11 @@ header {
 .band-pic {
   min-width: 400px;
 }
+
+.message-bubble {
+  max-width: 50%;
+}
+
+.message-text {
+  line-height: 1.5;
+}

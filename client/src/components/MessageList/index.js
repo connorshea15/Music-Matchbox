@@ -77,8 +77,8 @@ const MessageList = (props) => {
         const styleMessages = (message) => {
             console.log("I am in the style Messages function!:    " + message);
             if (message === username) {
-                return 'text-right';
-            } else return 'text-left';
+                return 'float-right badge-primary';
+            } else return 'float-left badge-light';
         };
     
 
@@ -124,11 +124,11 @@ const MessageList = (props) => {
                     </Modal.Header>
                     <Modal.Body>
                         <div className="mx-auto">
-                            <div  className="border rounded p-2">
+                            <div  className="border rounded p-2 d-flex flex-column">
                                 {thread &&
                                     thread.messages.map(message => (
                                         <div>
-                                            <p className={styleMessages(message.username)}>{message.messageBody}</p>
+                                            <p className={`badge badge-pill text-wrap mw-75 message-bubble ${styleMessages(message.username)}`}><p className="message-text pt-3 px-2">{message.messageBody}</p></p>
                                         </div>
                                 ))}
                             </div>
