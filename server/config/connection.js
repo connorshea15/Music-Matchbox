@@ -6,6 +6,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/Music-Matchbox'
   useCreateIndex: true,
   useFindAndModify: false
 });
-// mongoose.connection.dropDatabase();
+ // mongoose.connection.dropDatabase();
 
 module.exports = mongoose.connection;

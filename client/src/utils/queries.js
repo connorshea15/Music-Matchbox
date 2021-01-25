@@ -76,7 +76,7 @@ export const QUERY_THREADS = gql`
     threads {
       _id
       username1
-      username1
+      username2
     }
   }
 `;
@@ -86,9 +86,10 @@ export const QUERY_THREAD = gql`
     thread(username: $username) {
       _id
       username1
-      username1
+      username2
       messages {
         messageBody
+        recipientUsername
         username
       }
     }

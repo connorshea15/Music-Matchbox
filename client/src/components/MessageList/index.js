@@ -20,68 +20,45 @@ const MessageList = (props) => {
 
     const thread = data?.thread || [];
 
-    var messageList = [];
-
-    /*
-    Maybe I can use this useEffect to listen for changes to thread and call a function that has the message creator thing in it
-    useEffect(() => {
-
-    }, [thread]) */
-
-    /*if (!loading) {
-        for (var i = 0; i < thread.messages.length; i++) {
-            if (thread.messages[i].recipientUsername !== username) {
-                var sender = true;
-                console.log("recipeintUsername:   " + thread.messages[i].username + thread.messages.length);
-            } else var sender = false;
-            var message = {
-                body: thread.messages[i].messageBody,
-                myMessage: sender,
-                id: i
-            };
-            messageList.push(message);
-            console.log(messageList[i].myMessage);
-        };
-    }; */
-
     const [formState, setFormState] = useState({ messageBody: '' });
 
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true); // I may need to do this shit in here
+    const handleShow = () => setShow(true);
 
     const [addMessage, { error }] = useMutation(ADD_MESSAGE, {
         update(cache, { data: { addMessage } }) {
-           /* try{
-                const { messages } = cache.readQuery({ query: QUERY_BANDS });
+            try{
+                const { thread } = cache.readQuery({ query: QUERY_THREAD, variables: { username: recipientUsername } });
+
+                console.log("This is what is in thread object:   " + thread.messages[0].messageBody);
 
                 cache.writeQuery({
-                    query: QUERY_BANDS,
-                    data: { bands: [addBand, ...bands] }
+                    query: QUERY_THREAD,
+                    variables: { username: recipientUsername },
+                    data: { thread: { ...thread, messages: [...thread.messages, addMessage] } }
                 });
 
             } catch (e) {
-                console.error(e);
+                console.error("This is the error:    " + e);
             } 
-            
-            const { me } = cache.readQuery({ query: QUERY_ME });
+
+            /*const { me } = cache.readQuery({ query: QUERY_ME });
             cache.writeQuery({
               query: QUERY_ME,
-              data: { me: { ...me, bands: [...me.bands, addBand] } }
-            }); */
+              data: { me: { ...me, threads: [...me.threads, addMessage] } }
+            });*/
         }
     });
 
         // update style of message based on who sent it 
         const styleMessages = (message) => {
-            console.log("I am in the style Messages function!:    " + message);
             if (message === username) {
                 return 'float-right badge-primary';
             } else return 'float-left badge-light';
         };
     
-
     // update state based on form input changes
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -96,7 +73,7 @@ const MessageList = (props) => {
     const handleFormSubmit = async (event) => {
         event.preventDefault();
 
-        handleClose();
+        // handleClose();
       
         try {
             const { data } = await addMessage({
@@ -125,12 +102,14 @@ const MessageList = (props) => {
                     <Modal.Body>
                         <div className="mx-auto">
                             <div  className="border rounded p-2 d-flex flex-column">
-                                {thread &&
-                                    thread.messages.map(message => (
-                                        <div>
+                                {loading ? (
+                                    <div>Loading...</div>
+                                ) : (
+                                    thread.messages.map((message, index) => (
+                                        <div key={index}>
                                             <p className={`badge badge-pill text-wrap mw-75 message-bubble ${styleMessages(message.username)}`}><p className="message-text pt-3 px-2">{message.messageBody}</p></p>
                                         </div>
-                                ))}
+                                )))}
                             </div>
                             <Form className="border rounded p-2" onSubmit={handleFormSubmit}>
                                 <Form.Group controlId="formBasicBandName">

@@ -20,7 +20,7 @@ const ThreadList = (props) => {
       <div className="d-flex flex-row flex-wrap justify-content-center">
             {contacts &&
                 contacts.map(contact => (
-                    <div className="m-4">
+                    <div className="m-4" key={contact}>
                         <MessageList
                             recipientUsername={contact}
                             username={username}

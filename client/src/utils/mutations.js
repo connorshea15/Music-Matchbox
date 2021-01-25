@@ -46,7 +46,8 @@ export const ADD_MESSAGE = gql`
     addMessage(messageBody: $messageBody, recipientUsername: $recipientUsername) {
       _id
       messageBody
-    	recipientUsername
+      recipientUsername
+      username
     }
   }
 `;

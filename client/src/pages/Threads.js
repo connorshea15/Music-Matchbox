@@ -10,14 +10,14 @@ const Messages = () => {
 
     const username = Auth.getProfile().data.username;
 
-    var contacts = [];
-
     // if data exists, store it in bands
     const threads = data?.threads || [];
 
     var contacts = [];
 
     for (var i = 0; i < threads.length; i++) {
+      // console.log("threads[i].username1:   " + threads[i].username1);
+      // console.log("threads[i].username2:   " + threads[i].username2);
       if (threads[i].username1 !== username) {
         contacts.push(threads[i].username1);
       } else {
@@ -25,7 +25,7 @@ const Messages = () => {
       }
     };
 
-    console.log("contacts:   " + contacts);
+    // console.log("contacts:   " + contacts);
   return (
     <main>
       <div>

@@ -135,7 +135,7 @@ const resolvers = {
                     );
                     await User.findOneAndUpdate(
                         { username: message.recipientUsername },
-                        { $push: { messages: thread } },
+                        { $push: { threads: thread } },
                         { new: true }
                     );
                 }
