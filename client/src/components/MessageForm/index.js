@@ -60,6 +60,10 @@ const MessageForm = ({ recipientUsername }) => {
         } catch (e) {
             console.error("error: " + e);
         } 
+
+        setFormState({
+            messageBody: ''
+        });
     };
 
     return (

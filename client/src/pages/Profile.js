@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
 import BandForm from '../components/BandForm';
+import MessageList from '../components/MessageList';
 import MessageForm from '../components/MessageForm';
 
 const Profile = () => {
@@ -12,6 +13,8 @@ const Profile = () => {
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
         variables: { username: userParam }
     });
+
+    const myUsername = Auth.getProfile().data.username;
 
     const user = data?.me || data?.user || {};
 
@@ -44,7 +47,7 @@ const Profile = () => {
             {Auth.loggedIn() && userParam &&
                 <div>
                     <h4>Reach {user.username}</h4>
-                    <MessageForm 
+                    <MessageForm
                         recipientUsername={user.username}
                     />
                 </div>

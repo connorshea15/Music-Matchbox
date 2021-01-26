@@ -16,8 +16,6 @@ const Messages = () => {
     var contacts = [];
 
     for (var i = 0; i < threads.length; i++) {
-      // console.log("threads[i].username1:   " + threads[i].username1);
-      // console.log("threads[i].username2:   " + threads[i].username2);
       if (threads[i].username1 !== username) {
         contacts.push(threads[i].username1);
       } else {

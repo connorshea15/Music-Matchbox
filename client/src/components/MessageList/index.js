@@ -106,14 +106,12 @@ const MessageList = (props) => {
                     <Modal.Body>
                         <div className="mx-auto">
                             <div  className="border rounded p-2 d-flex flex-column">
-                                {loading ? (
-                                    <div>Loading...</div>
-                                ) : (
+                                {thread && 
                                     thread.messages.map((message, index) => (
                                         <div key={index}>
                                             <p className={`badge badge-pill text-wrap mw-75 message-bubble ${styleMessages(message.username)}`}><p className="message-text pt-3 px-2">{message.messageBody}</p></p>
                                         </div>
-                                )))}
+                                ))}
                             </div>
                             <Form className="border rounded p-2" onSubmit={handleFormSubmit}>
                                 <Form.Group controlId="formBasicBandName">
